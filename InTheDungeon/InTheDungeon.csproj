@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7D9CC245-A8D3-4A58-9ACA-C47BFC6071BE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>InTheDungeon</RootNamespace>
+    <AssemblyName>InTheDungeon</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>shieldWithHolm.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Creatures_Class.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBattle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBattle.Designer.cs">
+      <DependentUpon>FormBattle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMap.Designer.cs">
+      <DependentUpon>FormMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ItemsAndInventory.cs" />
+    <Compile Include="MapWritter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBattle.resx">
+      <DependentUpon>FormBattle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMap.resx">
+      <DependentUpon>FormMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\0bl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\0br.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\0l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\0r.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites\battle\left.png" />
+    <None Include="Sprites\battle\right.png" />
+    <None Include="Sprites\battle\middle.png" />
+    <None Include="Sprites\battle\w1.png" />
+    <None Include="Sprites\battle\w0.png" />
+    <None Include="Sprites\battle\s1.png" />
+    <None Include="Sprites\battle\s0.png" />
+    <None Include="Sprites\battle\l1.png" />
+    <None Include="Sprites\battle\l0.png" />
+    <None Include="Sprites\battle\h1.png" />
+    <None Include="Sprites\battle\h0.png" />
+    <None Include="Sprites\battle\d3.png" />
+    <None Include="Sprites\battle\d2.png" />
+    <None Include="Sprites\battle\d1.png" />
+    <None Include="Sprites\battle\d0.png" />
+    <None Include="Sprites\background.png" />
+    <None Include="Sprites\battle\backi.png" />
+    <Content Include="shieldWithHolm.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
