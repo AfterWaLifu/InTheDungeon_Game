@@ -103,6 +103,7 @@ namespace ITD_Map_Editor
             string[] lines= richTextBox1.Lines;
 
             int maxI, maxVal = 0;
+            int countOfLines = lines.Length;
             for (int i = 0; i < lines.Length; i++)
             {
                 if (lines[i].Length > maxVal)
@@ -113,18 +114,23 @@ namespace ITD_Map_Editor
             }
 
             mapInText = new char[maxVal, lines.Length];
-
-            for (int x = 0; x < maxVal; x++)
+            
+            for (int y = 0; y < lines.Length; y++)
             {
-                for (int y = 0; y < lines.Length; y++)
+                for (int x = 0; x < maxVal; x++)
                 {
-                    mapInText[x, y] = lines[x][y];
+                    mapInText[x, y] = lines[y][x];
                 }
             }
         }
 
         void boxesCreator(int x, int y)
         {
+            if (mapInImages != null)
+            {
+                foreach (PictureBox p in mapInImages) p.Dispose();
+            }
+
             mapInImages = new PictureBox[mapInText.GetLength(0), mapInText.GetLength(1)];
             for (int i = 0; i < x; i++)
             {
@@ -142,7 +148,18 @@ namespace ITD_Map_Editor
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            DrawMap();
+            bool test = false;
+
+            foreach (string s in richTextBox1.Lines)
+            {
+                if (string.IsNullOrEmpty(s))
+                {
+                    test = true;
+                    break;
+                }
+            }
+
+            if (!test) DrawMap();
         }
     }
 }
