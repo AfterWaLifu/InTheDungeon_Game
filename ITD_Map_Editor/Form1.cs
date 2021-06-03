@@ -14,11 +14,12 @@ namespace ITD_Map_Editor
     {
         char[,] mapInText;
         PictureBox[,] mapInImages;
+        string path;
+        string name;
         
         public Form1()
         {
             InitializeComponent();
-
         }
 
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -26,8 +27,10 @@ namespace ITD_Map_Editor
             switch (e.ClickedItem.ToString())
             {
                 case "Открыть":
+                    OpenMap();
                     break;
                 case "Сохранить":
+                    SaveMap();
                     break;
                 case "Новая карта":
                     NewMap();
@@ -37,12 +40,59 @@ namespace ITD_Map_Editor
 
         void OpenMap()
         {
-            
+            FileInfo f = new FileInfo(this.ToString());
+            path = f.DirectoryName;
+
+            using (OpenFileDialog opf = new OpenFileDialog())
+            {
+                opf.InitialDirectory = path;
+                opf.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                opf.RestoreDirectory = true;
+
+                if (opf.ShowDialog() == DialogResult.OK)
+                {
+                    path = opf.FileName;
+                    name = path.Substring(path.LastIndexOf("\\")+1);
+
+                    StreamReader sr = new StreamReader(path);
+                    string line;
+                    richTextBox1.Text = "";
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        richTextBox1.Text += line + "\n";
+                    }
+                    sr.Close();
+                }
+            }
+            DrawMap();
         }
 
         void SaveMap()
         {
+            CheckNames();
 
+            SaveFileDialog svd = new SaveFileDialog();
+            svd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            svd.FileName = name;
+            svd.DefaultExt = ".txt";
+            svd.InitialDirectory = path;
+
+            if (svd.ShowDialog() == DialogResult.Cancel) return;
+
+            File.WriteAllText(svd.FileName, richTextBox1.Text);
+        }
+
+        void CheckNames()
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                FileInfo fi = new FileInfo(this.ToString());
+                path = fi.DirectoryName;
+            }
+            if (string.IsNullOrEmpty(name))
+            {
+                name = "Map.txt";
+            }
         }
 
         void NewMap()
@@ -117,7 +167,7 @@ namespace ITD_Map_Editor
             
             for (int y = 0; y < lines.Length; y++)
             {
-                for (int x = 0; x < maxVal; x++)
+                for (int x = 0; x < lines[y].Length; x++)
                 {
                     mapInText[x, y] = lines[y][x];
                 }

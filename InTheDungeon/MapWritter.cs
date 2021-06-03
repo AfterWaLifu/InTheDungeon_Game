@@ -80,29 +80,30 @@ namespace InTheDungeon
 
             //тест на монстра или сундук
             char next = '3';
-            switch (currentStep)
+            try
             {
-                case "u":
-                    next = Map[Coordinates[0], Coordinates[1] - 1];
-                    break;
-                case "d":
-                    try
-                    {
+                switch (currentStep)
+                {
+                    case "u":
+                        next = Map[Coordinates[0], Coordinates[1] - 1];
+                        break;
+                    case "d":
                         next = Map[Coordinates[0], Coordinates[1] + 1];
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Я не могу сбежать! Это мой священный долг!");
-                        return Draw();
-                    }
+                        break;
+                    case "r":
+                        next = Map[Coordinates[0] + 1, Coordinates[1]];
+                        break;
+                    case "l":
+                        next = Map[Coordinates[0] - 1, Coordinates[1]];
                     break;
-                case "r":
-                    next = Map[Coordinates[0] + 1, Coordinates[1]];
-                    break;
-                case "l":
-                    next = Map[Coordinates[0] - 1, Coordinates[1]];
-                    break;
+                }
             }
+            catch
+            {
+                MessageBox.Show("Я не могу сбежать! Это мой священный долг!");
+                return Draw();
+            }
+            
             switch (next)
             {
                 case '4':
